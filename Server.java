@@ -27,6 +27,7 @@ public class Server {
             System.exit(-1);
         } while(true) {
 //Create Socket
+
             try {
                 socket1 = server.accept();
                 System.out.println("Client1 has been connected");
@@ -70,22 +71,38 @@ public class Server {
                 out1.println(Client1Name+ " vs " + Client2Name);
                 out2.println(Client1Name+ " vs " + Client2Name);
 
-                while(socket1.isConnected() && socket2.isConnected()) {
+                while(socket1.isConnected() && socket2.isConnected() && !socket1.isClosed() && !socket2.isClosed()) {
                     System.out.print("\n\nServer: Game starts \n");
 
-                    out1.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
+                    out1.println("Make your move - 1.Rock, 2.Paper, 3.Scissor 4.Exit game");
                     System.out.print("Client 1 ("+Client1Name+" ): ");
                     int Client1Move = Integer.parseInt(in1.readLine());
                     System.out.println(Client1Move);
 
-                    out2.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
+                    out2.println("Make your move - 1.Rock, 2.Paper, 3.Scissor 4.Exit game");
                     System.out.print("Client 2 ("+Client2Name+" ): ");
                     int Client2Move = Integer.parseInt(in2.readLine());
                     System.out.println(Client2Move);
 
+                    String Winner = ""; // Tracks winner
+
+                    //Exit game condition handler
+                    if ( Client1Move==4){
+                        System.out.println("Client 1 left");
+                        out1.println("Abandoned");
+                        out2.println("Abandoned");
+                        socket1.close();
+                        Winner = "Game Abandoned";
+                    }else if( Client2Move==4){
+                        System.out.println("Client 2 left");
+                        out1.println("Abandoned");
+                        out2.println("Abandoned");
+                        socket2.close();
+                        Winner = "Game Abandoned";
+                    }
+
                     //Game winner calculation
-                    String Winner = "";
-                    if ( Client1Move == Client2Move ){
+                    else if ( Client1Move == Client2Move ){
                         Winner = " Draw";
                     }else if ( (Client1Move==2 && Client2Move ==1 ) || (Client1Move==1 && Client2Move ==3 ) || (Client1Move==3 && Client2Move ==2 ) ){
                         Winner = "Client 1 : "+ Client1Name;
