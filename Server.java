@@ -53,7 +53,8 @@ public class Server {
                 out1 = new PrintWriter(socket1.getOutputStream(),
                         true);
                 out1.println("CSE338 LAB Server");
-                System.out.println("Client1 Name: " + in1.readLine());
+                String Client1Name = in1.readLine();
+                System.out.println("Client1 Name: " + Client1Name);
 
                 //communication with client 2
                 in2 = new BufferedReader(
@@ -64,17 +65,18 @@ public class Server {
                 out2 = new PrintWriter(socket2.getOutputStream(),
                         true);
                 out2.println("CSE338 LAB Server");
-                System.out.println("Client2 Name: " + in2.readLine());
+                String Client2Name = in2.readLine();
+                System.out.println("Client2 Name: " + Client2Name);
                 while(socket1.isConnected() && socket2.isConnected()) {
                     System.out.print("\nServer: Game starts \n");
 
                     out1.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
-                    System.out.print("Client1: ");
+                    System.out.print("Client 1 ( "+Client1Name+" ): ");
                     int Client1Move = Integer.parseInt(in1.readLine());
                     System.out.println(Client1Move);
 
                     out2.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
-                    System.out.print("Client2: ");
+                    System.out.print("Client 2 ( "+Client2Name+" ): ");
                     int Client2Move = Integer.parseInt(in2.readLine());
                     System.out.println(Client2Move);
 
