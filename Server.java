@@ -67,7 +67,9 @@ public class Server {
                 System.out.println("Client2 Name: " + in2.readLine());
                 while(socket1.isConnected() && socket2.isConnected()) {
                     System.out.print("Server: ");
-
+                    String ServerMessage = consoleInput.nextLine();
+                    out1.println(ServerMessage);
+                    out2.println(ServerMessage);
                     System.out.print("Client1: ");
                     System.out.println(in1.readLine());
                     out2.println(consoleInput.nextLine());
