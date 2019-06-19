@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-public class Client1 {
+public class Client {
     public static Socket socket = null;
     public static void main(String[] args) {
         try {
@@ -14,7 +14,7 @@ public class Client1 {
                     + "Socket: " + socket.getInetAddress() + ":" +
                     socket.getPort() + "\n" );
         } catch (IOException e) {
-            System.out.print("Connection to network can not be stablished");
+            System.out.print("Connection to network can not be established");
         }
         BufferedReader in = null;
         PrintWriter out = null;
