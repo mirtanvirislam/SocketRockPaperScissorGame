@@ -24,7 +24,7 @@ public class Client {
                     socket.getInputStream() ));
             out = new PrintWriter(socket.getOutputStream(), true);
             System.out.println("Server: " + in.readLine());
-            System.out.print("Client: your name_ ");
+            System.out.print("Client: Enter your name :  ");
             out.println(consoleInput.nextLine());
             while(true) {
                 System.out.print("Server: ");
