@@ -67,16 +67,19 @@ public class Server {
                 out2.println("CSE338 LAB Server");
                 String Client2Name = in2.readLine();
                 System.out.println("Client2 Name: " + Client2Name);
+                out1.println(Client1Name+ " vs " + Client2Name);
+                out2.println(Client1Name+ " vs " + Client2Name);
+
                 while(socket1.isConnected() && socket2.isConnected()) {
-                    System.out.print("\nServer: Game starts \n");
+                    System.out.print("\n\nServer: Game starts \n");
 
                     out1.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
-                    System.out.print("Client 1 ( "+Client1Name+" ): ");
+                    System.out.print("Client 1 ("+Client1Name+" ): ");
                     int Client1Move = Integer.parseInt(in1.readLine());
                     System.out.println(Client1Move);
 
                     out2.println("Make your move - 1.Rock, 2.Paper, 3.Scissor");
-                    System.out.print("Client 2 ( "+Client2Name+" ): ");
+                    System.out.print("Client 2 ("+Client2Name+" ): ");
                     int Client2Move = Integer.parseInt(in2.readLine());
                     System.out.println(Client2Move);
 
@@ -85,18 +88,15 @@ public class Server {
                     if ( Client1Move == Client2Move ){
                         Winner = " Draw";
                     }else if ( (Client1Move==2 && Client2Move ==1 ) || (Client1Move==1 && Client2Move ==3 ) || (Client1Move==3 && Client2Move ==2 ) ){
-                        Winner = "Client 1";
-                        out1.println("You won !");
-
+                        Winner = "Client 1 : "+ Client1Name;
                     }else if ( (Client2Move==2 && Client1Move ==1 ) || (Client2Move==1 && Client1Move ==3 ) || (Client2Move==3 && Client1Move ==2 ) ){
-                        Winner = "Client 2";
-                        out2.println("You won !");
+                        Winner = "Client 2 : "+ Client2Name;
                     }else {
                         Winner = "Error";
                     }
 
-
-                    String MovesSummary = "Client 1 move : " + Client1Move + ", Client 2 move : "+ Client2Move + ". Winner : " + Winner;
+                    //Show game summary
+                    String MovesSummary = "Client 1 move : " + Client1Move + "    Client 2 move : "+ Client2Move + "    Winner : " + Winner;
                     out1.println(MovesSummary);
                     out2.println(MovesSummary);
                     System.out.print(MovesSummary);
@@ -104,7 +104,12 @@ public class Server {
                 }
 
             } catch (IOException e) {
-                System.out.print("a Client left");
+                if(!socket1.isConnected()){
+                    System.out.print("Client 1 left");
+                }if(!socket2.isConnected()){
+                    System.out.print("Client 2 left");
+                }
+
                 consoleInput.close();
             }
 

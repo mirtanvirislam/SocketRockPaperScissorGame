@@ -29,6 +29,8 @@ public class Client {
             while(true) {
                 System.out.print("Server: ");
                 System.out.println(in.readLine());
+                System.out.print("Server: ");
+                System.out.println(in.readLine());
                 System.out.print("Client: ");
                 out.println(consoleInput.nextLine());
             }
