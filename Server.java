@@ -142,6 +142,7 @@ public class Server {
                     }else if( Client2Move==4){
                         System.out.println("Client 2 left");
                         s2Flag=0;
+                        out1.println("Abandoned game");
                         socket2.close();
                         Winner = "Game Abandoned";
                     }
