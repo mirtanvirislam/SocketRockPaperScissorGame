@@ -151,9 +151,9 @@ public class Server {
 
             } catch (IOException e) {
                 if(!socket1.isConnected()){
-                    System.out.println("--Client 1 left");
+                    System.out.println("-Client 1 left");
                 }if(!socket2.isConnected()){
-                    System.out.println("--Client 2 left");
+                    System.out.println("-Client 2 left");
                 }
 
                 System.out.print("IO EXCEPTION -- ");
